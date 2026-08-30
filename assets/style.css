@@ -1,0 +1,448 @@
+/* ============================================================
+   第64回 福岡県小学校理科教育研究大会 公式サイト
+   デザイン方針：フラット編集を土台に、クレー体と水彩で温かみを足す
+   色は3色（白い紙・墨・藍）
+   ============================================================ */
+:root{
+  --paper:  #ffffff;   /* 紙（白） */
+  --wash:   #ffffff;   /* 敷き色も白（面は罫線で分ける） */
+  --ink:    #2b2d2b;   /* 本文の墨 */
+  --black:  #161816;   /* 見出しの強い墨 */
+  --line:   #e2e4e2;   /* 罫線（表・カードの中） */
+  --rule:   #cfd3ce;   /* セクションを分ける罫 */
+  --sub:    #7a7d79;   /* 補足 */
+  --accent: #2e5d7d;   /* 藍（冬の理科室の色） */
+  --accent-wash:#e7eef2;
+  --font-hand: "Klee One", "Hiragino Sans", cursive;
+  --font-body: "BIZ UDPGothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-gothic: "Noto Sans JP", "Hiragino Sans", sans-serif;  /* 研究主題の極太 */
+  --font-en:   "Oswald", "Arial Narrow", sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.9;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+img{max-width:100%;display:block;}
+a{color:var(--accent);}
+.ja-phrase{word-break:auto-phrase;text-wrap:pretty;}
+.ja-phrase-c{word-break:auto-phrase;text-wrap:balance;}
+.nowrap{white-space:nowrap;}
+
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+
+/* ---- 英字ラベル（密度の小さな塊） ---- */
+.eyebrow{
+  font-family:var(--font-en);
+  font-size:13px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:flex;align-items:center;gap:12px;
+}
+.eyebrow::after{content:"";height:1px;width:56px;background:var(--accent);opacity:.45;}
+.eyebrow.ja,.bc-label.ja,.lc-label.ja{
+  font-family:var(--font-body);font-weight:700;
+  font-size:13px;letter-spacing:.16em;text-transform:none;
+}
+
+/* ---- 固定ヘッダー ---- */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  max-width:1180px;margin:0 auto;padding:10px 24px;
+  display:flex;align-items:center;gap:18px;
+}
+.brand{margin-right:auto;}
+.brand{
+  font-family:var(--font-hand);font-weight:600;
+  font-size:15px;line-height:1.35;color:var(--black);
+  text-decoration:none;
+}
+.brand small{display:block;font-size:11px;color:var(--sub);font-family:var(--font-body);letter-spacing:.06em;white-space:nowrap;}
+.brand-main{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.head-dl{
+  display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  font-size:13.5px;font-weight:700;text-decoration:none;
+  color:#fff;background:var(--accent);
+  padding:9px 17px;border-radius:3px;
+}
+.head-dl svg{width:14px;height:14px;flex-shrink:0;}
+.dl-short{display:none;}
+.head-dl:hover{opacity:.88;}
+.gnav ul{display:flex;gap:2px;list-style:none;}
+.gnav a{
+  display:block;padding:8px 10px;font-size:13.5px;color:var(--ink);
+  text-decoration:none;border-radius:3px;white-space:nowrap;
+}
+.gnav a:hover{background:var(--accent-wash);color:var(--accent);}
+.nav-toggle{display:none;}
+
+/* ---- ヒーロー ---- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--rule);}
+.hero-inner{
+  max-width:1180px;margin:0 auto;padding:64px 24px 40px;
+  display:grid;grid-template-columns:minmax(0,46%) minmax(0,54%);gap:24px;align-items:center;
+}
+.hero-text{position:relative;z-index:2;}
+.hero-era{font-size:15px;letter-spacing:.14em;color:var(--sub);margin-bottom:10px;}
+.hero h1{
+  font-family:var(--font-hand);font-weight:600;color:var(--black);
+  font-size:clamp(24px,3.6vw,42px);line-height:1.5;
+  margin-bottom:6px;
+}
+.h1-break{word-break:keep-all;overflow-wrap:normal;}
+.hero .hero-sub{
+  font-family:var(--font-hand);font-weight:400;
+  font-size:clamp(15px,1.6vw,19px);color:var(--ink);margin-bottom:26px;
+}
+.hero-date{
+  display:flex;align-items:baseline;gap:14px;margin-bottom:8px;
+}
+.hero-date .num{
+  font-family:var(--font-en);font-size:clamp(52px,6vw,76px);font-weight:500;
+  color:var(--accent);line-height:1;letter-spacing:.02em;
+}
+.hero-date .num small{font-size:.42em;letter-spacing:.12em;}
+.hero-date .day{font-size:15px;color:var(--ink);}
+.hero-place{font-size:17px;margin-bottom:26px;}
+.hero-place b{font-weight:600;}
+
+/* ---- ボタン ---- */
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-main,.btn-sub{
+  display:inline-flex;align-items:center;gap:9px;
+  text-decoration:none;font-size:15.5px;font-weight:700;
+  padding:13px 26px;border-radius:3px;
+}
+.btn-main{background:var(--accent);color:#fff;}
+.btn-sub{background:transparent;color:var(--accent);border:1px solid var(--accent);}
+.btn-main:hover,.btn-sub:hover{opacity:.88;}
+.btn-main svg{width:15px;height:15px;}
+.btn-main.pending{background:var(--sub);opacity:.85;}
+
+/* ---- 研究主題の帯 ---- */
+.theme-band{background:#fff;border-bottom:1px solid var(--rule);padding:66px 0 74px;text-align:center;}
+.tb-label{
+  font-size:12.5px;letter-spacing:.34em;color:var(--accent);
+  margin-bottom:22px;font-weight:700;
+}
+.tb-main{
+  font-family:var(--font-gothic);font-weight:900;color:var(--black);
+  font-size:clamp(21px,3.5vw,42px);line-height:1.65;letter-spacing:.01em;
+  word-break:auto-phrase;text-wrap:balance;
+}
+.tb-sub{
+  font-family:var(--font-gothic);font-weight:700;color:var(--sub);
+  font-size:clamp(13px,1.65vw,19px);line-height:1.9;margin-top:20px;
+  word-break:auto-phrase;text-wrap:balance;
+}
+.hero-art{position:relative;z-index:1;min-height:300px;}
+.hero-art img{width:100%;height:100%;object-fit:contain;}
+.hero-en{
+  position:absolute;right:24px;bottom:14px;z-index:2;
+  font-family:var(--font-en);font-size:12px;letter-spacing:.18em;color:var(--sub);
+  text-transform:uppercase;
+}
+
+/* ---- セクション共通（面は白一色・境目は細い罫線） ---- */
+section.block{padding:88px 0 96px;background:#fff;}
+section.block.alt{background:#fff;}
+section.block + section.block{border-top:1px solid var(--rule);}
+section.block{scroll-margin-top:64px;}
+.sec-head{margin-bottom:44px;}
+.sec-head::before{content:"";display:block;width:48px;height:4px;background:var(--accent);margin-bottom:22px;}
+.sec-head h2{
+  font-family:var(--font-hand);font-weight:600;color:var(--black);
+  font-size:clamp(25px,3vw,34px);line-height:1.55;margin-top:12px;
+  letter-spacing:.05em;
+}
+
+/* ---- セクション見出しの水彩モチーフ ---- */
+.sec-head{display:flex;align-items:flex-end;gap:26px;justify-content:space-between;}
+.sec-head-text{flex:1;min-width:0;}
+.sec-head::before{display:none;}
+.sec-head-text::before{content:"";display:block;width:48px;height:4px;background:var(--accent);margin-bottom:22px;}
+.sec-motif{width:132px;flex-shrink:0;margin-bottom:-6px;}
+.sec-motif img{width:100%;height:auto;}
+
+/* ---- 帯（理科室・校舎） ---- */
+.band{padding:26px 0 34px;background:#fff;border-top:1px solid var(--rule);}
+.band-inner{
+  max-width:1180px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:center;gap:40px;
+}
+.band-inner img{width:21%;height:auto;flex-shrink:0;}
+.band-copy{flex:0 1 auto;min-width:0;}
+.band-copy .bc-label{
+  font-family:var(--font-en);font-size:12px;letter-spacing:.22em;color:var(--accent);
+  margin-bottom:14px;
+}
+.band-copy p{
+  font-family:var(--font-hand);font-weight:600;color:var(--black);
+  font-size:clamp(17px,2.1vw,25px);line-height:1.9;
+  word-break:auto-phrase;text-wrap:pretty;
+}
+
+/* ---- 単元カードの挿絵 ---- */
+.lesson-card.with-art{display:flex;gap:26px;align-items:center;}
+.lesson-card .lc-text{flex:1;min-width:0;}
+.lesson-card .lc-art{width:210px;flex-shrink:0;}
+.lesson-card .lc-art img{width:100%;height:auto;}
+
+/* ---- フッターの双葉 ---- */
+.f-art{width:96px;margin:0 0 20px;}
+.f-art img{width:100%;height:auto;}
+
+@media(max-width:760px){
+  .sec-motif{width:88px;}
+  .lesson-card.with-art{flex-direction:column;align-items:flex-start;gap:16px;}
+  .lesson-card .lc-art{width:170px;align-self:center;}
+  .band-inner{flex-direction:column;gap:18px;}
+  .band-inner img{width:56%;}
+}
+
+/* ---- お知らせ ---- */
+.news-list{list-style:none;border-top:1px solid var(--line);}
+.news-list li{
+  display:flex;gap:22px;align-items:baseline;
+  padding:15px 4px;border-bottom:1px solid var(--line);font-size:15.5px;
+}
+.news-list time{
+  font-family:var(--font-en);font-size:14px;letter-spacing:.08em;
+  color:var(--accent);min-width:92px;
+}
+.news-list .tag{
+  font-style:normal;font-size:12px;color:var(--accent);
+  border:1px solid var(--line);border-radius:99px;
+  padding:2px 12px;white-space:nowrap;
+}
+.news-note{font-size:13px;color:var(--sub);margin-top:12px;}
+
+/* ---- 大会概要 ---- */
+.outline-dl{border-top:1px solid var(--line);}
+.outline-dl > div{
+  display:grid;grid-template-columns:160px 1fr;gap:12px;
+  padding:16px 4px;border-bottom:1px solid var(--line);
+}
+.outline-dl dt{font-weight:600;color:var(--black);font-size:15px;}
+.outline-dl dd{font-size:15.5px;}
+/* ---- 参加申し込み ---- */
+.entry-block{background:#fff;}
+.entry-card{
+  background:#fff;border:1px solid var(--line);
+  padding:38px 34px;text-align:center;
+}
+.entry-lead{font-size:16.5px;margin-bottom:22px;}
+.entry-note{font-size:14px;color:var(--sub);margin-top:18px;}
+
+/* ---- 当日の流れ ---- */
+.timeline{list-style:none;margin-top:8px;}
+.timeline li{
+  position:relative;display:grid;grid-template-columns:128px 1fr;gap:26px;
+  padding:0 0 30px 0;
+}
+.timeline li::before{
+  content:"";position:absolute;left:150px;top:10px;bottom:-4px;width:1px;background:var(--line);
+}
+.timeline li:last-child::before{display:none;}
+.timeline li::after{
+  content:"";position:absolute;left:146px;top:7px;width:9px;height:9px;border-radius:50%;
+  background:#fff;border:2px solid var(--accent);
+}
+.timeline .tl-time{
+  font-family:var(--font-en);font-size:16.5px;letter-spacing:.05em;color:var(--accent);
+  text-align:right;padding-right:34px;padding-top:2px;
+}
+.timeline .tl-body{padding-left:16px;}
+.timeline .tl-body b{font-size:16.5px;font-weight:600;color:var(--black);}
+.timeline .tl-body p{font-size:14.5px;color:var(--sub);margin-top:2px;}
+.timeline li.tl-star .tl-body b{font-family:var(--font-hand);font-size:18px;}
+
+/* ---- タブ（公開授業・分科会） ---- */
+.tabbar{display:flex;gap:10px;flex-wrap:wrap;}
+.tabbar button{
+  appearance:none;cursor:pointer;
+  font-family:var(--font-hand);font-weight:600;font-size:17px;
+  padding:9px 30px;border-radius:99px;
+  background:#fff;color:var(--sub);border:1px solid var(--line);
+}
+.tabbar button.on{
+  background:var(--accent);color:#fff;border-color:var(--accent);
+}
+.tabpanel{display:none;padding:30px 0 0;}
+.tabpanel.on{display:block;}
+.lesson-card{
+  background:#fff;border:1px solid var(--line);padding:26px 28px;margin-bottom:18px;
+}
+.lesson-card .lc-label{font-size:12.5px;letter-spacing:.2em;color:var(--accent);margin-bottom:6px;font-family:var(--font-en);}
+.lesson-card h3{
+  font-family:var(--font-hand);font-weight:600;font-size:clamp(18px,2vw,22px);
+  color:var(--black);line-height:1.7;
+}
+.lesson-card .lc-meta{font-size:15px;margin-top:6px;}
+.bunka-table{width:100%;border-collapse:collapse;margin-top:4px;font-size:15px;}
+.bunka-table th{
+  text-align:left;font-weight:600;color:var(--black);width:9em;
+  padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top;
+}
+.bunka-table td{padding:10px 6px;border-bottom:1px solid var(--line);}
+
+.tbd{color:var(--sub);font-size:.92em;}
+
+/* ---- 記念講演 ---- */
+.lecture-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:start;}
+.lecture-main{background:#fff;border:1px solid var(--line);padding:32px 34px;}
+.lecture-main .lm-time{font-family:var(--font-en);font-size:14px;letter-spacing:.14em;color:var(--accent);margin-bottom:10px;}
+.lecture-main h3{
+  font-family:var(--font-hand);font-weight:600;font-size:clamp(19px,2.2vw,24px);
+  color:var(--black);line-height:1.8;margin-bottom:4px;
+}
+.lecture-main .lm-name{font-size:17px;margin:14px 0 4px;}
+.lm-roman{font-family:var(--font-en);font-size:14.5px;letter-spacing:.13em;color:var(--sub);display:inline-block;margin-top:4px;}
+.lecture-main .lm-name b{font-size:20px;font-weight:600;color:var(--black);}
+.lecture-main .lm-prof{font-size:14.5px;color:var(--sub);margin-top:12px;border-top:1px solid var(--line);padding-top:14px;}
+.lecture-side{background:#fff;border:1px solid var(--line);padding:26px 28px;font-size:14.5px;}
+.lecture-side h4{font-family:var(--font-hand);font-weight:600;font-size:16.5px;color:var(--black);margin-bottom:8px;}
+.lecture-side a{font-size:13.5px;}
+
+/* ---- 会場・アクセス ---- */
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start;}
+.map-box{border:1px solid var(--line);background:#fff;}
+.map-box iframe{width:100%;height:340px;border:0;display:block;filter:saturate(.85);}
+.access-dl > div{
+  display:grid;grid-template-columns:96px 1fr;gap:14px;
+  padding:13px 2px;border-bottom:1px solid var(--line);font-size:15px;
+}
+.access-dl > div:first-child{border-top:1px solid var(--line);}
+.access-dl dt{font-weight:600;color:var(--black);}
+.access-dl small{color:var(--sub);font-size:13px;line-height:1.7;display:block;margin-top:2px;}
+.parking-note{
+  margin-top:18px;padding:16px 20px;background:#fff;border:1px dashed var(--sub);
+  font-size:14.5px;color:var(--sub);
+}
+.block.alt .parking-note{background:#fff;}
+
+/* ---- 資料ダウンロード ---- */
+.doc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.doc-card{
+  background:#fff;border:1px solid var(--line);padding:24px 24px 20px;
+  display:flex;flex-direction:column;gap:10px;min-height:150px;
+}
+.doc-card .dc-kind{font-family:var(--font-en);font-size:12px;letter-spacing:.18em;color:var(--sub);}
+.doc-card h3{font-size:16.5px;font-weight:600;color:var(--black);line-height:1.6;flex:1;}
+.doc-btn{
+  display:inline-block;text-align:center;text-decoration:none;
+  font-size:14.5px;font-weight:600;padding:10px 16px;
+  background:var(--accent);color:#fff;border-radius:3px;
+}
+.doc-btn:hover{opacity:.9;}
+.doc-btn.pending{
+  background:transparent;color:var(--sub);border:1px dashed var(--sub);
+  pointer-events:none;font-weight:400;
+}
+.doc-note{font-size:13px;color:var(--sub);margin-top:14px;}
+
+/* ---- 周辺のご案内 ---- */
+.town-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.town-card{background:#fff;border:1px solid var(--line);padding:24px 26px;}
+.town-card h3{
+  font-family:var(--font-hand);font-weight:600;font-size:18px;color:var(--black);
+  margin-bottom:10px;display:flex;align-items:baseline;gap:10px;
+}
+.town-card h3 .en{font-family:var(--font-en);font-size:11px;letter-spacing:.16em;color:var(--accent);}
+.town-card ul{list-style:none;font-size:14.5px;}
+.town-card li{padding:8px 0;border-bottom:1px solid var(--line);line-height:1.7;}
+.town-card li:last-child{border-bottom:none;}
+.town-card li b{font-weight:600;color:var(--black);display:block;}
+.town-card li span{color:var(--sub);font-size:13.5px;}
+.town-src{font-size:13px;color:var(--sub);margin-top:16px;}
+
+/* ---- お問い合わせ ---- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.contact-card{background:#fff;border:1px solid var(--line);padding:26px 28px;font-size:15px;}
+.contact-card h3{font-size:15px;font-weight:600;color:var(--sub);margin-bottom:8px;}
+.contact-card .cc-school{font-size:17.5px;font-weight:600;color:var(--black);}
+.contact-card .cc-tel{font-family:var(--font-en);font-size:19px;letter-spacing:.05em;margin-top:6px;}
+.contact-card .cc-tel a{text-decoration:none;color:var(--ink);}
+
+/* ---- フッター ---- */
+.site-footer{
+  border-top:1px solid var(--line);background:#fff;
+  padding:40px 0 90px;margin-top:20px;
+}
+.site-footer .f-name{font-family:var(--font-hand);font-weight:600;font-size:15px;color:var(--black);}
+.site-footer .f-sub{font-size:12.5px;color:var(--sub);margin-top:6px;}
+.site-footer .f-copy{
+  font-size:12.5px;letter-spacing:.06em;color:var(--sub);
+  margin-top:24px;padding-top:18px;border-top:1px solid var(--line);
+}
+
+/* ---- 準備中ページ ---- */
+.junbi{text-align:center;padding:110px 0 130px;}
+.junbi .eyebrow{justify-content:center;}
+.junbi .eyebrow::before{content:"";height:1px;width:56px;background:var(--accent);opacity:.45;}
+.junbi-title{
+  font-family:var(--font-gothic);font-weight:900;color:var(--black);
+  font-size:clamp(24px,3.4vw,38px);line-height:1.6;margin:18px 0 22px;
+  word-break:keep-all;overflow-wrap:normal;
+}
+.junbi-lead{font-size:16.5px;max-width:34em;margin:0 auto;}
+.junbi-back{margin-top:36px;}
+
+/* ---- レスポンシブ ---- */
+@media(max-width:1080px){
+  .hero-inner{grid-template-columns:1fr;padding-top:40px;}
+  .hero-art{min-height:220px;order:-1;}
+  .hero-date{flex-wrap:wrap;}
+  .hero-date .num{font-size:clamp(44px,13vw,60px);}
+  .lecture-grid,.access-grid,.contact-grid{grid-template-columns:1fr;}
+  .doc-grid,.town-grid{grid-template-columns:1fr;}
+  .timeline li{grid-template-columns:86px 1fr;}
+  .timeline li::before{left:104px;}
+  .timeline li::after{left:100px;}
+  .timeline .tl-time{padding-right:26px;font-size:15px;}
+  .outline-dl > div{grid-template-columns:110px 1fr;}
+  .nav-toggle{
+    display:block;appearance:none;background:none;border:1px solid var(--line);
+    border-radius:3px;padding:6px 12px;font-size:13px;color:var(--ink);cursor:pointer;
+    white-space:nowrap;flex-shrink:0;
+  }
+  .brand{max-width:calc(100% - 210px);font-size:13.5px;}
+  .brand small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .head-dl{font-size:12.5px;padding:8px 13px;gap:5px;}
+  .head-dl svg{width:12px;height:12px;}
+  .theme-band{padding:52px 0 56px;}
+  .btn-main,.btn-sub{padding:12px 20px;font-size:15px;}
+  .gnav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);}
+  .gnav.open{display:block;}
+  .gnav ul{flex-direction:column;padding:8px 16px 16px;}
+  .gnav a{padding:11px 8px;font-size:15px;border-bottom:1px solid var(--line);}
+}
+@media(max-width:640px){
+  .hero-en{display:none;}
+  .dl-long{display:none;}
+  .dl-short{display:inline;}
+  .head-dl{padding:8px 12px;}
+  .brand{max-width:calc(100% - 165px);}
+  .hero-btns .btn-main,.hero-btns .btn-sub{flex:1;justify-content:center;}
+  .entry-card{padding:30px 20px;}
+  .news-list li{flex-wrap:wrap;gap:8px 16px;padding:14px 2px;}
+  .news-list li span{flex-basis:100%;}
+  .news-list time{min-width:0;}
+  .outline-dl > div{grid-template-columns:1fr;gap:2px;padding:13px 2px;}
+  .access-dl > div{grid-template-columns:1fr;gap:2px;}
+  .lesson-card{padding:20px 18px;}
+  .bunka-table th{width:6.5em;}
+}
