@@ -446,3 +446,9 @@ section.block{scroll-margin-top:64px;}
   .lesson-card{padding:20px 18px;}
   .bunka-table th{width:6.5em;}
 }
+
+/* 2026-09-30 二次案内反映 */
+.tl-indent{display:inline-block;padding-left:5.2em;}
+.contact-card .cc-addr{font-size:14px;color:var(--sub);margin-top:4px;}
+.bunka-table td.ja-phrase{line-height:1.7;}
+@media (max-width:640px){.tl-indent{padding-left:0;}}
