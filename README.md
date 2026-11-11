@@ -18,6 +18,12 @@ GitHub Pagesで公開する（1ページ構成・ビルド不要の素のHTML/CS
 フォームのURLに差し替え、`target="_blank" rel="noopener"` を足す。下の一文（準備中の案内）も消す。
 つなぐまでは `junbi.html`（準備中ページ）へ飛ぶ。
 
+### 事後アンケート
+`index.html` の `#survey` 節。Googleフォーム（EdtechChikuhoのドライブ「事後アンケートの回答（非公開）」）を
+`viewform?embedded=true` で埋め込み、ボタンは短いURL `https://forms.gle/oAkXqtuhcMFVkNRF6`、
+QRコードは `assets/img/qr_survey.svg`（控え＝`../QRコード/事後アンケートQR*`）。
+回答を締め切るときは、フォームの「回答」タブで受け付けを止め、この節に一文を足す。
+
 ### CSSを直したとき
 `index.html` と `junbi.html` の `style.css?v=20260829a` の日付部分を新しくする。
 これをしないと、前に見た人のブラウザが古いCSSを使い続ける。
